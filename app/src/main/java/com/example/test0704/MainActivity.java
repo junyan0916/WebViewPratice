@@ -29,27 +29,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class MyWebChromeClient extends WebChromeClient {
-        //獲得網頁的載入進度，顯示在右上角的TextView控制元件中
-        public void onProgressChanged(WebView view, int newProgress) {
-            textView = findViewById(R.id.textView2);
-
-            if(newProgress < 100) {
-                String progress = newProgress + "%";
-                textView.setText(progress);
-            } else {
-                textView.setText(" ");
-            }
-        }
     }
 
     @Override
+    @SuppressLint("SetJavaScriptEnabled")
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
-    @SuppressLint("SetJavaScriptEnabled")
-    public void button_onClick(View view) {
         webView = findViewById(R.id.webView1);
 
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
@@ -64,17 +52,8 @@ public class MainActivity extends AppCompatActivity {
         webView.setWebViewClient(new MyWebViewClient());
         webView.setWebChromeClient(new MyWebChromeClient());
 
-        webView.loadUrl("http://192.168.130.51:30000/");
-        //https://www.ubay.tw
-        //https://www.google.com
-        //http://192.168.110.42:30000/
-    }
+        webView.loadUrl("http://192.168.110.42:30000/");
 
-    public void button2_onClick(View view) {
-
-        webView.loadUrl("about:blank");
-        webView.clearCache(true);
-        webView.clearHistory();
     }
 
     @Override
